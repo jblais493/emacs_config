@@ -1,0 +1,76 @@
+(package-initialize)
+
+(require 'package)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
+
+(setq package-list '(evil
+                     evil-leader))
+                     
+(setq package-enable-at-startup nil)
+(package-initialize)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#0d0f11" "#DF8C8C" "#A8CE93" "#DADA93" "#83AFE5" "#c9b4cf" "#7FC1CA" "#e6eef3"])
+ '(custom-enabled-themes (quote (doom-nova)))
+ '(custom-safe-themes
+   (quote
+    ("7666b079fc1493b74c1f0c5e6857f3cf0389696f2d9b8791c892c696ab4a9b64" "0846e3b976425f142137352e87dd6ac1c0a1980bb70f81bfcf4a54177f1ab495" default)))
+ '(fci-rule-color "#556873")
+ '(jdee-db-active-breakpoint-face-colors (cons "#0d0f11" "#7FC1CA"))
+ '(jdee-db-requested-breakpoint-face-colors (cons "#0d0f11" "#A8CE93"))
+ '(jdee-db-spec-breakpoint-face-colors (cons "#0d0f11" "#899BA6"))
+ '(package-selected-packages (quote (evil-leader doom-themes evil-visual-mark-mode)))
+ '(vc-annotate-background "#0d0f11")
+ '(vc-annotate-color-map
+   (list
+    (cons 20 "#A8CE93")
+    (cons 40 "#b8d293")
+    (cons 60 "#c9d693")
+    (cons 80 "#DADA93")
+    (cons 100 "#e2d291")
+    (cons 120 "#eaca90")
+    (cons 140 "#F2C38F")
+    (cons 160 "#e4bea4")
+    (cons 180 "#d6b9b9")
+    (cons 200 "#c9b4cf")
+    (cons 220 "#d0a6b8")
+    (cons 240 "#d799a2")
+    (cons 260 "#DF8C8C")
+    (cons 280 "#c98f92")
+    (cons 300 "#b39399")
+    (cons 320 "#9e979f")
+    (cons 340 "#556873")
+    (cons 360 "#556873")))
+ '(vc-annotate-very-old-color nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+ 
+; Update your local package index
+(unless package-archive-contents
+  (package-refresh-contents))
+
+; Install all missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+ 
+(require 'evil)
+(evil-mode t)
+
+(require 'evil-leader)
+(global-evil-leader-mode)
+(evil-leader/set-leader ",")
+(evil-leader/set-key
+  "b" 'switch-to-buffer
+  "w" 'save-buffer)
